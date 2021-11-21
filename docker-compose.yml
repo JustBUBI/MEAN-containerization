@@ -1,0 +1,47 @@
+# Version of docker-compose
+version: '3.7'
+# List with all services/containers
+services: 
+  mongo:
+    # Mongo image - it gets automatically pulled from docker hub 
+    image: mongo
+    # Restart the container if something happens (crashes/stops unexpectedly)
+    restart: always
+    # Specify environmental variables (those can be found in mongo's documentation)
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: tasks
+    # Forward the default port of the database inside the container to the host machine's port
+    ports:
+      - 27017:27017
+    # Add volume to persist the data to the host machine
+    volumes:
+      # initial creation of a user on the database
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      # Mongo specific volume to store database data
+      - ~/mongo/data:/data/db
+  tasks-api:
+    restart: always
+    # Pull api image from docker hub
+    image: gosho300/tasks-api
+    # Hostname is important for configuring the routing with nginx
+    hostname: api
+    depends_on:
+      - mongo
+    environment:
+      # start application on port 5000
+      PORT: 5000
+      # Those are set on the mongo-init.js file when user is created
+      DATABASE_HOST: mongodb://admin:password@mongo:27017
+      DATABASE_NAME: tasks
+  tasks-app:
+    # Pull client image from docker hub
+    image: gosho300/tasks-app
+    hostname: client
+  nginx:
+    restart: always
+    image: gosho300/tasks-nginx
+    hostname: nginx
+    ports:
+      - "80:80"

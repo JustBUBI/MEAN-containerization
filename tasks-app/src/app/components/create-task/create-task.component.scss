@@ -1,0 +1,8 @@
+.color_box {
+  @apply w-10 h-10 cursor-pointer;
+}
+
+.selected {
+  border-width: 2px;
+  border-color: rgba(75, 85, 99, var(--tw-border-opacity));
+}

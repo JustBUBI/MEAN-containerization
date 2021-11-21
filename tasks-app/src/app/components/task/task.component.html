@@ -1,0 +1,6 @@
+<div class="wrapper relative pl-10 pr-4 py-3 rounded-full overflow-hidden flex items-center justify-between">
+  <div class="absolute left-0 top-0 bottom-0 w-5" ngClass="tag_{{task.color}}"></div>
+  <p [ngClass]="task.isFinished ? 'text-gray-400 line-through' : ''">{{task.title}}</p>
+  <app-active-indicator *ngIf="!task.isFinished" (taskStatusChanged)="changeTaskStatus($event)"></app-active-indicator>
+  <app-finished-indicator *ngIf="task.isFinished" (taskStatusChanged)="changeTaskStatus($event)"></app-finished-indicator>
+</div>

@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "../node_modules/@angular/material/prebuilt-themes/purple-green.css";
+
+mat-dialog-container {
+  background-color: white !important;
+  color: #1F2937 !important;
+  padding: 3rem !important;
+}
+
+.tag_yellow{ background-color: #FBBF24; }
+.tag_red{ background-color: #F87171; }
+.tag_green{ background-color: #34D399; }
+.tag_blue{ background-color: #60A5FA; }
+.tag_pink{ background-color: #F472B6; }
+.tag_purple{ background-color: #A78BFA; }

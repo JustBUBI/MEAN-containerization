@@ -1,0 +1,22 @@
+{
+  "name": "tasks-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "start:prod": "set NODE_ENV=production && node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-mongo-sanitize": "^2.1.0",
+    "mongoose": "^6.0.4",
+    "morgan": "^1.10.0",
+    "string-strip-html": "^8.3.0"
+  }
+}
